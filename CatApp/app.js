@@ -43,6 +43,16 @@ var app = new Vue({
         this.getKittens();
       });
     },
+    deleteKitten: function (kitten) {
+      fetch(URL + "/kitten/" + kitten._id, {
+        method: "DELETE",
+      }).then((response) => {
+        response.json().then((deleted_kitten) => {
+          console.log(deleted_kitten);
+          this.getKittens();
+        });
+      });
+    },
   },
 
   created: function () {
