@@ -24,7 +24,20 @@ app.post("/kitten", (req, res) => {
     });
 });
 
-app.get("/kitten/:id", (req, res) => {});
+app.get("/kitten/:id", (req, res) => {
+  const id = req.params.id;
+  Kitten.findById(id)
+    .then((kitten) => {
+      if (kitten == null) {
+        res.status(404).json({ message: "not found" });
+        return;
+      }
+      res.json(kitten);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 app.get("/kittens", (req, res) => {});
 
