@@ -39,7 +39,15 @@ app.get("/kitten/:id", (req, res) => {
     });
 });
 
-app.get("/kittens", (req, res) => {});
+app.get("/kittens", (req, res) => {
+  Kitten.find()
+    .then((kittens) => {
+      res.json(kittens);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 app.put("/kitten/:id", (req, res) => {});
 
