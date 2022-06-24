@@ -9,11 +9,19 @@
   </head>
   <body>
     <div id="app">
+      <div id="input-field">
+        Name:
+        <input type="text" placeholder="name" v-model="nameInput" /> Color:
+        <input type="text" placeholder="color" v-model="colorInput" /> Age:
+        <input type="number" placeholder="age" v-model="ageInput" />
+        <button @click="addKitten()">Add Cat</button>
+      </div>
       <div id="list-area">
         <div v-for="(kitten,index) in kittens">
-          <p>{{kitten.name}}</p>
-          <p>{{kitten.color}}</p>
-          <p>{{kitten.age}}</p>
+          <p>Name: {{kitten.name}}</p>
+          <p>Color: {{kitten.color}}</p>
+          <p>Age: {{kitten.age}}</p>
+          <button @click="deleteKitten(kitten)">Delete</button>
         </div>
       </div>
     </div>

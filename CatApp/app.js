@@ -17,6 +17,32 @@ var app = new Vue({
         });
       });
     },
+
+    addKitten: function () {
+      let newKitten = {
+        name: this.nameInput,
+        color: this.colorInput,
+        age: this.ageInput,
+      };
+
+      this.postKitten(newKitten);
+      this.nameInput = "";
+      this.colorInput = "";
+      this.ageInput = 0;
+    },
+
+    postKitten: function (newKitten) {
+      fetch(URL + "/kitten", {
+        method: "POST",
+        body: JSON.stringify(newKitten),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => {
+        console.log(response);
+        this.getKittens();
+      });
+    },
   },
 
   created: function () {
