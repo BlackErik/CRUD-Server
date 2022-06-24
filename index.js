@@ -1,8 +1,6 @@
-const express = require("express");
-
 const mongodb = require("./mongo");
 
-const app = express();
+const app = require("./server");
 
 const flags = require("flags");
 flags.defineNumber("port", 3000, "ports for the https server to listen on ");

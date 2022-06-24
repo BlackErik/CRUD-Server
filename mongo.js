@@ -13,20 +13,25 @@ function connect(user, password, host, port, db) {
 }
 
 function setUpConnectionHandlers(callback) {
+  // when connecting
   db.once("connecting", () => {
     console.log("Connecting to MongoDB");
   });
 
+  // when connected
   db.once("connected", () => {
     console.log("Connected to MongoDB");
   });
 
+  // when connection is open
   db.once("open", () => {
-    console.log("Open connection to MongoDB");
+    console.log("Open Connection to MongoDB");
+    callback();
   });
 
+  // when there is an error in connecting
   db.once("error", () => {
-    console.log("Error connecting to MongoDB");
+    console.log("Error Connecting to MongoDB");
   });
 }
 
