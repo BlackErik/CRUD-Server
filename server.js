@@ -49,7 +49,21 @@ app.get("/kittens", (req, res) => {
     });
 });
 
-app.put("/kitten/:id", (req, res) => {});
+app.put("/kitten/:id", (req, res) => {
+  const id = req.params.id;
+  const kitten = setUpKitten(req.body);
+  Kitten.findByIdAndUpdate(id, kitten, { new: true })
+    .then((kitten) => {
+      if (kitten == null) {
+        res.status(404).json({ message: "not found" });
+        return;
+      }
+      res.json(kitten);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 app.patch("/kitten/:id", (req, res) => {});
 
