@@ -53,6 +53,19 @@ app.put("/kitten/:id", (req, res) => {});
 
 app.patch("/kitten/:id", (req, res) => {});
 
-app.delete("/kitten/:id", (req, res) => {});
+app.delete("/kitten/:id", (req, res) => {
+  const id = req.params.id;
+  Kitten.findByIdAndDelete(id)
+    .then((kitten) => {
+      if (kitten == null) {
+        res.status(404).json({ message: "not found" });
+        return;
+      }
+      res.json(kitten);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = app;
