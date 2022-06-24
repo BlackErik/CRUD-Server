@@ -24,4 +24,14 @@ app.post("/kitten", (req, res) => {
     });
 });
 
+app.get("/kitten/:id", (req, res) => {});
+
+app.get("/kittens", (req, res) => {});
+
+app.put("/kitten/:id", (req, res) => {});
+
+app.patch("/kitten/:id", (req, res) => {});
+
+app.delete("/kitten/:id", (req, res) => {});
+
 module.exports = app;
