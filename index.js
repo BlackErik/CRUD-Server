@@ -1,5 +1,7 @@
 const express = require("express");
 
+const mongodb = require("./mongo");
+
 const app = express();
 
 const flags = require("flags");
@@ -9,6 +11,9 @@ flags.parse();
 const dotenv = require("dotenv");
 const port = flags.get("port") || process.env.PORT || 4000;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+mongodb.setUpConnectionHandlers(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
 });
+mongodb.connect();
